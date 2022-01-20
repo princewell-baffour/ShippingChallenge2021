@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  #annotations:
+    #reloader.stakater.com/auto: "true"
+  name: webserver
+  labels:
+    app: lighttpd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lighttpd
+  template:
+    metadata:
+      labels:
+        app: lighttpd
+    spec:
+      containers:
+      - name: flask-lighttpd
+        image: princewell/debian-lighttpd-flask:latest
+        imagePullPolicy: Always
+        # this will always check for a newer image when a pod starts
+
+        ports:
+        - containerPort: 5000
+
+      
+# The service gives the webserver pods the correct IP and Port.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    run: web-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+    nodePort: 30010
+  selector:
+    app: lighttpd

@@ -1,7 +1,7 @@
 # ShippingChallenge2021
 
 - **Name**: Princewell Baffour Awuah
-- **Class**: 2 ACS
+
 
 ## My Stack
 | **Webserver** | **Database** | **Script Language** |   **Extra**   |
@@ -11,7 +11,7 @@
 ## The Challenge
 - Create your own kubernetes stack with 1 worker.
 - Containerized application on worker is the following.
-    ![Challenge](docs/img/challenge.png)
+    ![Challenge](images/challenge.png)
     - When surname changes in Db, webpage changes automatically.
     - When  layout of webpage changes, the worker will display the new layout automatically.
     - Use the webstack which is assigned to you.
